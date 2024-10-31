@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Displays numbers from 1 - 20. 4 prints bad luck from China. 9 prints bad luck from Japan. 17 prints bad luck from Italy
+
+unlucky=1
+while [ $unlucky -le 20 ]
+do
+	echo "$unlucky"
+	case $unlucky in
+		"4") echo "bad luck from China";;
+		"9") echo "bad luck from Japan";;
+		"17") echo "bad luck from Italy";;
+
+	esac
+	(( unlucky++ ))
+done
