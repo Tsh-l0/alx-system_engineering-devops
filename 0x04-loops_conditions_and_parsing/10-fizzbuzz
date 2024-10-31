@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Displays numbers from 1 to 100 with FizzBuzz rules
+
+for ab in {1..100}
+do
+	if (( ab % 3 == 0 && ab % 5 == 0)); then
+		echo "FizzBuzz"
+	elif (( ab % 3 == 0 )); then
+		echo "Fizz"
+	elif (( ab % 5 == 0 )); then
+		echo "Buzz"
+	else
+		echo "$ab"
+	fi
+done
