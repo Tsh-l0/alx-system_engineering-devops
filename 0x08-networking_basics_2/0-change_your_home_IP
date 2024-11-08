@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Configures server to resolve to localhost 127.0.0.2
+# and Facebook to 8.8.8.8
+
+cp /etc/hosts /etc/hosts.bak
+
+{
+	echo "127.0.0.2 localhost"
+	echo "8.8.8.8 facebook.com"
+} >> /etc/hosts
+
+echo "Hosts file updated successfully."
