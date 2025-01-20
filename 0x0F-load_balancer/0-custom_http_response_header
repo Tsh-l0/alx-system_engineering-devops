@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# This script configures Nginx so that its HTTP response contains a
+# custom header
+
+
+# Update and upgrade packages
+sudo apt-get update -y
+sudo apt-get upgrade -y
+
+# Install Nginx
+sudo apt-get install nginx -y
+
+# Create a simple HTML file
+echo "Hello World!" | sudo tee /var/www/html/index.html
+echo "Error page" | sudo tee /var/www/html/404.html
+
+HOSTNAME=$(hostname)
+
+# Set up Nginx to include the custom header given
+sudo bash -c "cat > /etc/nginx/sites-available/default" <<EOL
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	root /var/www/html;
+	index index.html index.htm index.nginx-debian.html;
+
+	server_name _;
+
+	add_header X-Served-By $HOSTNAME;
+}
+EOL
+
+# Test set up for any errors
+sudo nginx -t
+
+# Restart Nginx for changes to be applied
+sudo systemctl restart nginx
