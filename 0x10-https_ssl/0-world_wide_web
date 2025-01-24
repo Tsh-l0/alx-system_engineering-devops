@@ -5,8 +5,10 @@
 get_subdomain_info() {
 	local domain="$1"
 	local subdomain="$2"
+	local full_domain="${subdomain}.${domain}"
 	local record_info
-	record_info=$(dig +short "${subdomain}.${domain}")
+	record_info=$(dig +short "${full_domain}")
+	echo "Checking subdomain: ${full_domain}"
 	echo "The subdomain ${subdomain} is an A record and points to ${record_info}"
 }
 
