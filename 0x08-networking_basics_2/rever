@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# This script reverts the localhost and facebook.com entries in the /etc/hosts file to their default values
+
+# Create a backup of the current hosts file
+cp /etc/hosts ~/hosts.bak
+
+# Overwrite the hosts file with the default mapping for localhost
+echo "127.0.0.1   localhost" > ~/hosts.new
+
+# Copy the modified hosts file back to /etc/hosts
+sudo cp -f ~/hosts.new /etc/hosts
+
+# Clean up
+rm ~/hosts.new
+
+echo "Hosts file reverted. localhost now resolves to 127.0.0.1."
+
