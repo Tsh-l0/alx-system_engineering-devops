@@ -14,5 +14,3 @@ sudo cp -f ~/hosts.new /etc/hosts
 
 # Remove any temporary files in the directory
 rm ~/hosts.new
-
-echo "Hosts file updated. Remember to revert localhost to 127.0.0.1 if needed."
