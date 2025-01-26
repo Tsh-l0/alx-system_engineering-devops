@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Makes localhost listen on port 98
+
+while true; do
+	nc -l 98 | while read line; do
+		echo "$line"
+	done
+done
