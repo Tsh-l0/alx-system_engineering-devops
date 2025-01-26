@@ -2,7 +2,7 @@
 # Makes localhost listen on port 98
 
 while true; do
-	nc -l 98 | while read line; do
+	nc -l 98 | while read -r line; do
 		echo "$line"
 	done
 done
