@@ -2,10 +2,11 @@
 # Install a ufw firewall with rules
 
 # Check the status of ufw
+sudo apt-get update
 sudo ufw status
 
 # Install ufw if not installed
-sudo apt install ufw
+sudo apt-get install ufw
 
 # Set paramters for firewall
 sudo ufw default deny incoming
