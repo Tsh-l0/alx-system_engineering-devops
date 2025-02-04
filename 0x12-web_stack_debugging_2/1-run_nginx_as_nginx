@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Ensure that the container is running as Nginx user
+
+# Run the container as nginx user and listen on port 8080
+sed -i 's/user  *root/user  nginx/' /etc/nginx/nginx.conf
+sed -i 's/listen 80/listen 8080/' /etc/nginx/sites-available/default
+
+# Assign appropriate directory powers to the nginx user
+chown -R nginx:nginx /var/log/nginx
+chown -R nginx:nginx /var/cache/nginx
+
+# Restart to apply changes
+service nginx restart
