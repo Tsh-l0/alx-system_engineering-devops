@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#Install nginx server
+
+# Update the package list and install Nginx
+apt-get update -y
+apt-get install nginx -y
+
+# Create a HTML page for the homepage
+echo "Creating pages on the server" > /var/www/html/index.html
+
+# Ensure Nginx is listening on port 80
+
+# Restart Nginx to apply changes
+nginx -s reload
+
+# Verify that Nginx is running as intended
+curl localhost
