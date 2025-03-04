@@ -4,7 +4,7 @@ Queries the Reddit API and prints the titles of the first 10
 hot posts in a subreddit
 """
 
-import requests
+from requests import get
 
 
 def top_ten(subreddit):
@@ -12,18 +12,22 @@ def top_ten(subreddit):
     Queries the Reddit API and prints the titles of the first 10
     hot posts in a subreddit
     """
-    url = f"https://reddit.com/r/{subreddit}/hot.json?limit=10"
-    headers = {"User-Agent":
-               'Python/requests:top_ten_checker:v1.0.0 (by /u/yourusername)'}
-    response = requests.get(url, headers=headers, allow_redirects=False)
+    if subreddit is None or not isinstance(subreddit, str):
+        print("None")
+        return
+
+    user_agent = {
+        'User-agent': 'Python/requests:top_ten_checker:v1.0 (by /u/Tsholoo)'}
+    url = 'https://www.reddit.com/r/{}/hot.json?limit=10'.format(subreddit)
+    response = get(url, headers=user_agent, allow_redirects=False)
 
     if response.status_code == 200:
         try:
-            data = response.json()
-            posts = data.get('data', {}).get('children', [])
+            results = response.json()
+            posts = results.get('data', {}).get('children', [])
             for post in posts:
                 print(post.get('data', {}).get('title', 'None'))
-        except ValueError:
-            print(None)
+        except (ValueError, KeyError, TypeError):
+            print("None")
         else:
-            print(None)
+            print("None")
