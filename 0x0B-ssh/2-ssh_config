@@ -1,5 +1,6 @@
-Host *
-	IdentityFile ~/.ssh/school
-	PasswordAuthentication no
-	HostName 8.8.8.8
-	User ubuntu
+Host myserver
+        HostName 184.72.196.47
+        User ubuntu
+        IdentityFile ~/.ssh/school
+	IdentitiesOnly yes
+        PasswordAuthentication no
