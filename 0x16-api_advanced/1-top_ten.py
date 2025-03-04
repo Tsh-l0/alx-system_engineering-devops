@@ -13,13 +13,17 @@ def top_ten(subreddit):
     hot posts in a subreddit
     """
     url = f"https://reddit.com/r/{subreddit}/hot.json?limit=10"
-    headers = {"User-Agent": "Custom-User-Agent"}
+    headers = {"User-Agent":
+               'Python/requests:top_ten_checker:v1.0.0 (by /u/yourusername)'}
     response = requests.get(url, headers=headers, allow_redirects=False)
 
     if response.status_code == 200:
-        data = response.json()
-        posts = data.get("data", {}).get("children", [])
-        for post in posts:
-            print(post["data"].get("title"))
+        try:
+            data = response.json()
+            posts = data.get('data', {}).get('children', [])
+            for post in posts:
+                print(post.get('data', {}).get('title', 'None'))
+        except ValueError:
+            print(None)
         else:
             print(None)
